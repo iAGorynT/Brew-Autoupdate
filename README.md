@@ -7,7 +7,7 @@
 * Add an alias command to your .zshrc file for Brewautom2.sh (Brew Autoupdate Manager).
 * Add $HOME/bin to your $PATH.
 
-**Installed Files**
+**Installed Files:**
 * Brewautom2.sh:  Brew Autoupdate Manager.
 * BrewitLaunchd.sh: Used by Launchd to run the Brew Autoupdate User Agent.
 * Launchd.plist: A Launchd plist template containing Key-Values used to generate a "User Specific" Launchd User Agent plist file.
