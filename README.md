@@ -3,7 +3,7 @@
  
  **Installation:**
 * Copy BrewautoInstaller.sh from the GitHub Repo. bin folder to your home folder and run it.
-* A $HOME/Launchd and $HOME/bin Folder will be created and populated with necessary scripts and files.
+* A $HOME/Launchd and $HOME/bin Folder will be created and contain necessary scripts and files.
 * Add an alias command to your .zshrc file for Brewautom2.sh (Brew Autoupdate Manager).
 * Add $HOME/bin to your $PATH.
 
