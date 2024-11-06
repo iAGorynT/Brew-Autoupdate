@@ -2,7 +2,7 @@
  Autoupdate zsh scripts and files used with Launchd, Launchctl, and other utilities on an Apple Mac Computer.
  
  **Installation:**
-* Copy BrewautoInstaller.sh to your home folder and run it.
+* Copy BrewautoInstaller.sh from the GitHub Repo. bin folder to your home folder and run it.
 * A $HOME/Launchd and $HOME/bin Folder will be created and populated with necessary scripts and files.
 * Add an alias command to your .zshrc file for Brewautom2.sh (Brew Autoupdate Manager).
 * Add $HOME/bin to your $PATH.
