@@ -46,13 +46,23 @@ function print_status() {
 function empty_log() {
     echo "Logfile Emptied:  $(date)" > "$1"
     echo >> "$1"
-    print_status "${COLOR_GREEN}" "Log File Emptied."
+
+    # Extract the full line containing "Logfile"
+    logfileline=$(grep "Logfile" "$1" 2>/dev/null)
+
+    # Check if the line was found
+    if [[ -n "${logfileline}" ]]; then
+        print_status "${COLOR_GREEN}" "${logfileline}"
+    else
+        print_status "${COLOR_RED}" "Logfile Line not found"
+    fi
+    # print_status "${COLOR_GREEN}" "Log File Emptied."
 }
 
 # Function to check the status of the Brew autoupdate service
 function autoupdate_status() {
     clear
-    print_status "${COLOR_BLUE}" "Brew Autoupdate Status..."
+    print_status "${COLOR_YELLOW}" "Brew Autoupdate Status..."
     echo
 
     if is_agent_active; then
@@ -226,23 +236,34 @@ function show_menu() {
     echo -e "\t2. Load Autoupdate"
     echo -e "\t3. Unload Autoupdate"
     echo -e "\t0. Exit"
-    
-    echo -en "\n\tEnter your choice (0-3): "
-    read -k 1 option
+    echo -en "\t\tEnter an Option: "
+
+    # Read entire input instead of just one character
+    read option
+    # Remove any whitespace
+    option=$(echo $option | tr -d '[:space:]')
     echo
 }
 
 # Main loop
 while true; do
     show_menu
-    case $option in
-        0) break ;;
-        1) autoupdate_status ;;
-        2) load_autoupdate ;;
-        3) unload_autoupdate ;;
-        $'\n') break ;;
-        *) print_status "${COLOR_RED}" "\n\tInvalid selection. Please try again." ;;
-    esac
+    # Check if input is a valid number
+    if [[ $option =~ ^[0-9]+$ ]]; then
+        case $option in
+            0) break ;;
+            1) autoupdate_status ;;
+            2) load_autoupdate ;;
+            3) unload_autoupdate ;;
+            *) clear; print_status "${COLOR_RED}" "\n\tSorry, wrong selection" ;;
+        esac
+    # Handle empty input (Enter key)
+    elif [[ -z "$option" ]]; then
+        break
+    else
+        clear
+        print_status "${COLOR_RED}" "\n\tPlease enter a valid number"
+    fi
     echo -en "\n\tPress any key to continue"
     read -k 1
 done
