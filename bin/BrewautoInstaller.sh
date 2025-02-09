@@ -79,6 +79,9 @@ download_github_file() {
 mkdir -p "$BIN_FOLDER"
 cd "$BIN_FOLDER"
 
+# Create a ShellScripts symbolic link to the bin folder
+ln -s $HOME/bin $HOME/ShellScripts
+
 # Download files using the download_github_file function
 download_github_file iAGorynT Brew-Autoupdate main bin/Brewautom2.sh
 ret_code=$?
