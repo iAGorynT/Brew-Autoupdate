@@ -90,6 +90,11 @@ ret_code=$?
 display_message $ret_code
 echo
 
+download_github_file iAGorynT Brew-Autoupdate main bin/FLibFormatEcho.sh
+ret_code=$?
+display_message $ret_code
+echo
+
 # Make User Launchd Directory and Download Plist Files
 mkdir -p "$LAUNCHD_FOLDER"
 cd "$LAUNCHD_FOLDER"
